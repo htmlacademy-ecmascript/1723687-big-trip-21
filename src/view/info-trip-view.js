@@ -1,7 +1,7 @@
-import {createElement} from '../render.js'
+import { createElement } from "../render.js";
 
-function createInfoTripTemplate () {
-    return `
+function createInfoTripTemplate() {
+  return `
         <section class="trip-main__trip-info  trip-info">
             <div class="trip-info__main">
             <h1 class="trip-info__title">Amsterdam &mdash; Chamonix &mdash; Geneva</h1>
@@ -13,23 +13,23 @@ function createInfoTripTemplate () {
             Total: &euro;&nbsp;<span class="trip-info__cost-value">1230</span>
             </p>
         </section>
-    `
+    `;
 }
 
 export default class InfoTrip {
-    getTemplate() {
-        return createInfoTripTemplate();
-    }
-    
-    getElement() {
+  getTemplate() {
+    return createInfoTripTemplate();
+  }
+
+  getElement() {
     if (!this.element) {
-        this.element = createElement(this.getTemplate());
+      this.element = createElement(this.getTemplate());
     }
 
     return this.element;
-    }
-    
-    removeElement() {
-        this.element = null;
-    }
+  }
+
+  removeElement() {
+    this.element = null;
+  }
 }
