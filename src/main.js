@@ -16,3 +16,4 @@ render(new InfoTrip(), infoTripElement, RenderPosition.AFTERBEGIN);
 render(new FilterView(), filterElement);
 
 boardPresenter.init();
+

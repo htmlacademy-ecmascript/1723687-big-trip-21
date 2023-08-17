@@ -184,3 +184,4 @@ export default class FormEditView {
     this.element = null;
   }
 }
+
