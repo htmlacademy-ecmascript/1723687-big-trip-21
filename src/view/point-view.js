@@ -1,8 +1,8 @@
-import { createElement } from "../render.js";
+import { createElement } from '../render.js';
 import { formatStringToShortDate, formatStringToDayTime, formatStringToTime, getPointDuration } from "../utils.js";
 
 function createPointTemplate({ point, pointDestinations, pointOffers }) {
-  const { basePrice, dateFrom, dateTo, offers, isFavorite, type } = point;
+  const { basePrice, dateFrom, dateTo, type } = point;
   
   return `
         <li class="trip-events__item">
@@ -29,7 +29,7 @@ function createPointTemplate({ point, pointDestinations, pointOffers }) {
             </p>
             <h4 class="visually-hidden">Offers:</h4>
             <ul class="event__selected-offers">
-              ${pointOffers.map(offer => `
+              ${pointOffers.map((offer) => `
                 <li class="event__offer">
                   <span class="event__offer-title">${offer.title}</span><br>
                   +€&nbsp;
@@ -77,3 +77,4 @@ export default class PointView {
     this.element = null;
   }
 }
+

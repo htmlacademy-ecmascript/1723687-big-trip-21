@@ -1,23 +1,24 @@
-import dayjs from 'dayjs';
-import { getRandomPositiveInteger } from '../utils';
-import { Duration } from '../const';
+import dayjs from "dayjs";
+import { getRandomPositiveInteger } from "../utils";
+import { Duration } from "../const";
 
-let date = dayjs().subtract(getRandomPositiveInteger(0, Duration.DAY), 'day').toDate()
+let date = dayjs().subtract(getRandomPositiveInteger(0, Duration.DAY), "day").toDate();
 
-function getDate({next}) {
-    const minsGap = getRandomPositiveInteger(0, Duration.MIN);
-    const hoursGap = getRandomPositiveInteger(0, Duration.HOUR);
-    const daysGap = getRandomPositiveInteger(0, Duration.DAY);
+function getDate({ next }) {
+  const minsGap = getRandomPositiveInteger(0, Duration.MIN);
+  const hoursGap = getRandomPositiveInteger(0, Duration.HOUR);
+  const daysGap = getRandomPositiveInteger(0, Duration.DAY);
 
-    if(next) {
-        date = dayjs(date) 
-            .add(minsGap, 'minute')
-            .add(hoursGap, 'hour')
-            .add(daysGap, 'day')
-            .toDate();
-    }
+  if (next) {
+    date = dayjs(date)
+      .add(minsGap, "minute")
+      .add(hoursGap, "hour")
+      .add(daysGap, "day")
+      .toDate();
+  }
 
-    return date
-}
+  return date;
+};
 
-export {getDate};
+export { getDate };
+

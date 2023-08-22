@@ -1,13 +1,13 @@
 const TYPES = [
-  "Taxi",
-  "Bus",
-  "Train",
-  "Ship",
-  "Drive",
-  "Flight",
-  "Check-in",
-  "Sightseeing",
-  "Restaurant",
+  'Taxi',
+  'Bus',
+  'Train',
+  'Ship',
+  'Drive',
+  'Flight',
+  'Check-in',
+  'Sightseeing',
+  'Restaurant',
 ];
 
 const DESCROPTIONS = [
@@ -16,16 +16,16 @@ const DESCROPTIONS = [
   'cras aliquet varius magna, non porta ligula feugiat eget.',
   'fusce tristique felis at fermentum pharetra.',
   'aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
-]
+];
 
 const CITIES = [
-  "Amsterdam",
-  "Chamonix",
-  "Geneva",
-  "Barcelona",
-  "Kyoto",
-  "Sydney",
-  "Vancouver",
+  'Amsterdam',
+  'Chamonix',
+  'Geneva',
+  'Barcelona',
+  'Kyoto',
+  'Sydney',
+  'Vancouver',
 ];
 
 const OFFERS = [
