@@ -1,15 +1,15 @@
-import { getRandomPositiveInteger, getRandomArrayElement } from "../utils.js";
+import { getRandomPositiveInteger, getRandomArrayElement } from '../utils.js';
 
-import { generateMockDestination } from "../mock/destination.js";
-import { generateMockOffer } from "../mock/offer.js";
-import { generateMockPoint } from "../mock/point.js";
+import { generateMockDestination } from '../mock/destination.js';
+import { generateMockOffer } from '../mock/offer.js';
+import { generateMockPoint } from '../mock/point.js';
 
 import {
   TYPES,
   DESTINATION_COUNT,
   OFFER_COUNT,
   POINT_COUNT,
-} from "../const.js";
+} from '../const.js';
 
 export default class MockService {
   constructor() {
