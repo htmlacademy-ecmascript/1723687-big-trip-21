@@ -7,7 +7,7 @@ function generateMockOffer() {
     title: getRandomArrayElement(OFFERS),
     price: getRandomPositiveInteger(Price.MIN, Price.MAX),
   };
-};
+}
 
 export { generateMockOffer };
 

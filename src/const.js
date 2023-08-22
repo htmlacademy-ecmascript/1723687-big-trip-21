@@ -34,7 +34,7 @@ const OFFERS = [
   'Order Uber',
   'Add meal',
   'Travel by train',
-]
+];
 
 const Price = {
   MIN: 20,

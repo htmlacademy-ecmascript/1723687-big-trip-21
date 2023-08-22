@@ -31,16 +31,16 @@ const MSEC_IN_HOUR = MIN_IN_HOUR * SEC_IN_MIN * MSEC_IN_SEC;
 const MSEC_IN_DAY = HOUR_IN_DAY * MSEC_IN_HOUR;
 
 function formatStringToDayTime(date) {
-  return dayjs(date).format("YY-MM-DD HH:mm")
-};
+  return dayjs(date).format('YY-MM-DD HH:mm');
+}
 
 function formatStringToShortDate(date) {
-  return dayjs(date).format("MMM DD")
-};
+  return dayjs(date).format('MMM DD');
+}
 
 function formatStringToTime(date) {
-  return dayjs(date).format("HH:mm")
-};
+  return dayjs(date).format('HH:mm');
+}
 
 function getPointDuration(dateFrom, dateTo) {
   const timeDiff = dayjs(dateTo).diff(dayjs(dateFrom));
@@ -49,22 +49,22 @@ function getPointDuration(dateFrom, dateTo) {
 
   switch (true) {
     case timeDiff >= MSEC_IN_DAY:
-      pointDuration = dayjs.duration(timeDiff).format("DD[D] HH[H] mm[M]");
+      pointDuration = dayjs.duration(timeDiff).format('DD[D] HH[H] mm[M]');
       break;
     case timeDiff >= MIN_IN_HOUR:
-      pointDuration = dayjs.duration(timeDiff).format("HH[H] mm[M]");
+      pointDuration = dayjs.duration(timeDiff).format('HH[H] mm[M]');
       break;
     case timeDiff >= MSEC_IN_HOUR:
-      pointDuration = dayjs.duration(timeDiff).format("mm[M]");
+      pointDuration = dayjs.duration(timeDiff).format('mm[M]');
       break;
   }
 
   return pointDuration;
-};
+}
 
 function getScheduleDAte(date) {
-  return dayjs(date).format("DD/MM/YY HH:mm");
-};
+  return dayjs(date).format('DD/MM/YY HH:mm');
+}
 
 export {
   getRandomPositiveInteger,

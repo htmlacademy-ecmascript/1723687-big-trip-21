@@ -58,12 +58,11 @@ export default class MockService {
 
       const offersIds = hasOffers
         ? offersByType.offers
-            .slice(0, getRandomPositiveInteger(0, 5))
-            .map((offer) => offer.id)
+          .slice(0, getRandomPositiveInteger(0, 5))
+          .map((offer) => offer.id)
         : [];
 
       return generateMockPoint(type, destination.id, offersIds);
     });
   }
 }
-

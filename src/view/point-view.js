@@ -1,9 +1,8 @@
 import { createElement } from '../render.js';
-import { formatStringToShortDate, formatStringToDayTime, formatStringToTime, getPointDuration } from "../utils.js";
+import { formatStringToShortDate, formatStringToDayTime, formatStringToTime, getPointDuration } from '../utils.js';
 
 function createPointTemplate({ point, pointDestinations, pointOffers }) {
   const { basePrice, dateFrom, dateTo, type } = point;
-  
   return `
         <li class="trip-events__item">
             <div class="event">
