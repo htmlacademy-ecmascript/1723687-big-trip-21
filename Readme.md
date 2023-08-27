@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Алина Курицына](https://up.htmlacademy.ru/ecmascript/21/user/1723687).
-* Наставник: `Yulia Volkova`.
+* Наставник: [Yulia Volkova](https://htmlacademy.ru/profile/id423707).
 
 ---
 
