@@ -165,10 +165,11 @@ export default class FormEditView extends AbstractView {
   }
 
   get template() {
-    return createFormEditTemplate(
-      this.#point,
-      this.#pointDestinations,
-      this.#pointOffers
+    return createFormEditTemplate({
+      point: this.#point,
+      pointDestinations: this.#pointDestinations,
+      pointOffers: this.#pointOffers
+    }
     );
   }
 }

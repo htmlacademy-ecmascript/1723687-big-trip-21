@@ -63,10 +63,11 @@ export default class PointView extends AbstractView {
   }
 
   get template() {
-    return createPointTemplate(
-      this.#point,
-      this.#pointDestinations,
-      this.#pointOffers
+    return createPointTemplate({
+      point: this.#point,
+      pointDestinations: this.#pointDestinations,
+      pointOffers: this.#pointOffers
+    }
     );
   }
 }
