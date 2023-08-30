@@ -1,5 +1,6 @@
-import AbstractView from "../framework/view/abstract-view.js";
-import { formatStringToDayTime } from "../utils.js";
+import AbstractView from '../framework/view/abstract-view.js';
+import { formatStringToDayTime } from '../utils.js';
+import { POINT_BLANCK } from '../const.js';
 
 function createFormEditTemplate({ point, pointDestinations, pointOffers }) {
   const { type, dateFrom, dateTo, basePrice } = point;
@@ -81,13 +82,9 @@ function createFormEditTemplate({ point, pointDestinations, pointOffers }) {
 
                 <div class="event__field-group  event__field-group--time">
                 <label class="visually-hidden" for="event-start-time-1">From</label>
-                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${formatStringToDayTime(
-                  dateFrom
-                )}">&mdash;
+                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${formatStringToDayTime(dateFrom)}">&mdash;
                 <label class="visually-hidden" for="event-end-time-1">To</label>
-                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time"  value="${formatStringToDayTime(
-                  dateTo
-                )}">
+                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time"  value="${formatStringToDayTime(dateTo)}">
                 </div>
 
                 <div class="event__field-group  event__field-group--price">
@@ -106,27 +103,15 @@ function createFormEditTemplate({ point, pointDestinations, pointOffers }) {
                 <h3 class="event__section-title  event__section-title--offers">Offers</h3>
 
                 <div class="event__available-offers">
-                    <div class="event__offer-selector">
-                    <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" checked>
-                    <label class="event__offer-label" for="event-offer-luggage-1">
-                        <span class="event__offer-title">Add luggage</span>
-                        &plus;&euro;&nbsp;
-                        <span class="event__offer-price">30</span>
-                    </label>
-                    </div>
-                    ${pointOffers
-                      .map(
-                        (offer) => `
-                    <div class="event__offer-selector">
+                ${pointOffers.map((offer) => `
+                <div class="event__offer-selector">
                     <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" checked>
                     <label class="event__offer-label" for="event-offer-luggage-1">
                     <span class="event__offer-title">${offer.title}</span>
                     &plus;&euro;&nbsp;
                     <span class="event__offer-price">${offer.price}</span>
                     </label>
-                    </div>`
-                      )
-                      .join("")}
+                </div>`).join('')}
                 </div>
                 </section>
 
@@ -135,15 +120,10 @@ function createFormEditTemplate({ point, pointDestinations, pointOffers }) {
                 <p class="event__destination-description">${name} ${description}</p>
 
                 <div class="event__photos-container">
-                    ${pictures
-                      .map(
-                        (picture) => `
+                ${pictures.map((picture) => `
                     <div class="event__photos-tape">
                     <img class="event__photo" src="${picture.src}" alt="${picture.description}">
-                    </div>
-                    `
-                      )
-                      .join("")}
+                    </div>`).join('')}
                 </div>
                 </section>
             </section>
@@ -156,20 +136,27 @@ export default class FormEditView extends AbstractView {
   #point = null;
   #pointDestinations = null;
   #pointOffers = null;
+  #handleFormSubmit = null;
 
-  constructor({ point, pointDestinations, pointOffers }) {
+  constructor({ point = POINT_BLANCK, pointDestinations, pointOffers, onFormSubmit }) {
     super();
     this.#point = point;
     this.#pointDestinations = pointDestinations;
     this.#pointOffers = pointOffers;
+    this.#handleFormSubmit = onFormSubmit;
+    this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
   }
 
   get template() {
     return createFormEditTemplate({
       point: this.#point,
       pointDestinations: this.#pointDestinations,
-      pointOffers: this.#pointOffers
-    }
-    );
+      pointOffers: this.#pointOffers,
+    });
   }
+
+  #formSubmitHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleFormSubmit();
+  };
 }
