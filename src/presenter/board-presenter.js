@@ -27,7 +27,7 @@ export default class BoardPresenter {
       render(new EmptyListView(), this.#container);
       return;
     }
-          
+
     render(this.#sortComponent, this.#container);
     render(this.#editListComponent, this.#container);
     this.#points.forEach((point) => {
