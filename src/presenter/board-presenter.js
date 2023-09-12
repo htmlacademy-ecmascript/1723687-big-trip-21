@@ -57,9 +57,9 @@ export default class BoardPresenter {
   }
 
   #renderBoard = () => {
+    this.#renderSort();
     this.#renderEmpty();
     this.#renderPointContainer();
     this.#renderPoints();
-    this.#renderSort();
   }
 }
