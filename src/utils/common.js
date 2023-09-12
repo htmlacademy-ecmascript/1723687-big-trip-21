@@ -12,7 +12,7 @@ const getRandomPositiveInteger = (min, max) => {
 const getRandomArrayElement = (elements) =>
   elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-// Функция для обновления точек 
+// Функция для обновления точек
 
 const updateItem = (items, update) => items.map((item) => item.id === update.id ? update : item);
 

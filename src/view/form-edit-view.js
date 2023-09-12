@@ -1,6 +1,6 @@
 import AbstractView from '../framework/view/abstract-view.js';
 import { formatStringToDayTime } from '../utils/day.js';
-import { POINT_BLANCK, TYPES } from '../const.js';
+import { POINT_BLANK, TYPES } from '../const.js';
 
 function createFormEditTemplate({ point, pointDestinations, pointOffers }) {
   const { type, dateFrom, dateTo, basePrice } = point;
@@ -105,7 +105,7 @@ export default class FormEditView extends AbstractView {
   #onResetClick = null;
   #onSubmitClick = null;
 
-  constructor({ point = POINT_BLANCK, pointDestinations, pointOffers, onSubmitClick , onResetClick }) {
+  constructor({ point = POINT_BLANK, pointDestinations, pointOffers, onSubmitClick , onResetClick }) {
     super();
     this.#point = point;
     this.#pointDestinations = pointDestinations;
