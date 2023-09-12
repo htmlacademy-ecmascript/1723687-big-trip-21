@@ -39,32 +39,30 @@ export default class PointPresenter {
 
   #replacePointToForm() {
     replace(this.#pointEditComponent, this.#pointComponent);
+    document.addEventListener('keydown', this.#escKeyDownHandler);
   }
 
   #replaceFormToPoint() {
     replace(this.#pointComponent, this.#pointEditComponent);
+    document.removeEventListener('keydown', this.#escKeyDownHandler);
   }
 
   #escKeyDownHandler = (evt) => {
     if (evt.key === "Escape") {
       evt.preventDefault();
       this.#replaceFormToPoint();
-      document.removeEventListener("keydown", this.#escKeyDownHandler);
     }
   };
 
   #handleEditClick = () => {
     this.#replacePointToForm();
-    document.removeEventListener("keydown", this.#escKeyDownHandler);
   }
 
   #handleFormSubmit = () => {
     this.#replaceFormToPoint();
-    document.removeEventListener("keydown", this.#escKeyDownHandler);
   }
 
   #handleFormClose = () => {
     this.#replaceFormToPoint();
-    document.removeEventListener("keydown", this.#escKeyDownHandler);
   }
 }
