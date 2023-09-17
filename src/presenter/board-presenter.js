@@ -4,9 +4,12 @@ import PointPresenter from './point-presenter.js';
 import { render } from '../framework/render.js';
 import EmptyListView from '../view/list-empty.js';
 import { updateItem } from '../utils/common.js';
+import { SortType } from '../const.js';
 
 export default class BoardPresenter {
   #sortComponent = null;
+  #currentSortType = SortType.DAY;
+  #sourcedPoints = [];
   #editListComponent = new EditList();
   #container = null;
   #pointsModel = null;
@@ -22,6 +25,7 @@ export default class BoardPresenter {
     this.#offersModel = offersModel;
     this.#destinationsModel = destinationsModel;
     this.#points = [...this.#pointsModel.get()];
+    this.#sourcedPoints = [...this.#pointsModel.get()];
   }
 
   init() {
@@ -68,8 +72,30 @@ export default class BoardPresenter {
     render(this.#sortComponent, this.#container);
   };
 
-  #handleSortTypeChange = (sortType) => {
+  #sortTasks(sortType) {
+    switch (sortType) {
+      case SortType.TIME:
+        this.#renderPoints.sort(sortPointyTime);
+        break;
+      case SortType.PRICE:
+        this.#renderPoints.sort(sortPointPrice);
+        break;
+      case SortType.DAY:
+        this.#renderPoints.sort(sortPointDay);
+        break;
+      default:
+        this.#renderPoints = [...this.#sourcedPoints];
+    }
 
+    this.#currentSortType = sortType;
+  }
+
+  #handleSortTypeChange = (sortType) => {
+    if (this.#currentSortType === sortType) {
+      return;
+    }
+
+    this.#sortTasks(sortType);
   }
 
   #renderPointContainer = () => {
