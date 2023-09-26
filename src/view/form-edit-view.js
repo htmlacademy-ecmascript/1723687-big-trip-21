@@ -187,6 +187,7 @@ export default class FormEditView extends AbstractStatefulView {
     this.element.querySelector('.event__type-group').addEventListener('change', this.#typeChangeHandler);
     this.element.querySelector('.event__input--destination').addEventListener('change', this.#destinationChangeHandler)
     this.element.querySelector('.event__available-offers')?.addEventListener('change', this.#offerChangeHandler);
+    this.element.querySelector('.event__input--price').addEventListener('change', this.#priceChangeHandler)
   }
 
   #resetButtonClickHandler = (evt) => {
@@ -208,6 +209,15 @@ export default class FormEditView extends AbstractStatefulView {
       }
     });
   };
+
+  #priceChangeHandler = (evt) => {
+    this._setState({
+      point: {
+        ...this._state.point,
+        basePrice: evt.target.valueAsNumber
+      }
+    })
+  }
 
   #destinationChangeHandler = (evt) => {
     const selectedDestination = this.#pointDestinations.find((pointDestination) => pointDestination.name === evt.target.value);
