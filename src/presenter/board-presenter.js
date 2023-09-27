@@ -85,18 +85,23 @@ export default class BoardPresenter {
   #clearBoard = ({resetSortType = false} = {}) => {
     this.#clearPoints();
     remove(this.#sortComponent);
+    this.#sortComponent = null;
+
+    if (resetSortType) {
+      this.#currentSortType = SortType.DAY;
+    }
   }
 
   #handleViewAction = (actionType, updateType, update) => {
     switch (actionType) {
       case UserAction.UPDATE_POINT:
-        this.#pointsModel.updatePoint(updateType, update);
+        this.#pointsModel.update(updateType, update);
         break;
       case UserAction.ADD_POINT:
-        this.#pointsModel.addPoint(updateType, update);
+        this.#pointsModel.add(updateType, update);
         break;
       case UserAction.DELETE_POINT:
-        this.#pointsModel.deletePoint(updateType, update);
+        this.#pointsModel.delete(updateType, update);
         break;
     }
   };
@@ -104,7 +109,7 @@ export default class BoardPresenter {
   #handleModelEvent = (updateType, data) => {
     switch (updateType) {
       case UpdateType.PATCH:
-        this.#pointPresenters.get(data.id).init(data);
+        this.#pointPresenters?.get(data.id)?.init(data);
         break;
       case UpdateType.MINOR: 
         this.#clearBoard();
