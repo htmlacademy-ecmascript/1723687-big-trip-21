@@ -2,6 +2,7 @@ import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
 import { formatStringToDayTime } from '../utils/day.js';
 import { TYPES } from '../const.js';
 import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 
 const POINT_BLANK = {
   basePrice: 0,
@@ -13,12 +14,10 @@ const POINT_BLANK = {
   type: 'Taxi',
 };
 
-import 'flatpickr/dist/flatpickr.min.css';
-
-const createTypeTemplate = (type) => `
+const createTypeTemplate = (currentType) => `
   ${TYPES.map((eventType) => `
     <div class="event__type-item">
-      <input id="event-type-${eventType.toLowerCase()}-1" class="event__type-input visually-hidden" type="radio" name="event-type" value="${eventType.toLowerCase()}" ${type.toLowerCase() === eventType.toLowerCase() ? 'checked' : ''}>
+      <input id="event-type-${eventType.toLowerCase()}-1" class="event__type-input visually-hidden" type="radio" name="event-type" value="${eventType.toLowerCase()}" ${currentType.toLowerCase() === eventType.toLowerCase() ? 'checked' : ''}>
       <label class="event__type-label event__type-label--${eventType.toLowerCase()}" for="event-type-${eventType.toLowerCase()}-1">${eventType}</label>
     </div>
   `).join('')}
