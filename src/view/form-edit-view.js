@@ -154,16 +154,18 @@ export default class FormEditView extends AbstractStatefulView {
   #onSubmitClick = null;
   #datepickerFrom = null;
   #datepickerTo = null;
+  #onDeleteClick = null;
 
-  constructor({ point = POINT_BLANK, pointDestinations, pointOffers, onSubmitClick , onResetClick }) {
+  constructor({ point = POINT_BLANK, pointDestinations, pointOffers, onSubmitClick , onResetClick, onDeleteClick }) {
     super();
     this._state = point;
     this._setState(FormEditView.parsePointToState({point}));
     this.#pointDestinations = pointDestinations;
     this.#pointOffers = pointOffers;
-    this._restoreHandlers();
     this.#onResetClick = onResetClick;
     this.#onSubmitClick = onSubmitClick;
+    this.#onDeleteClick = onDeleteClick;
+    this._restoreHandlers();
   }
 
   get template() {
@@ -197,6 +199,7 @@ export default class FormEditView extends AbstractStatefulView {
     this.element.querySelector('.event__input--destination').addEventListener('change', this.#destinationChangeHandler);
     this.element.querySelector('.event__available-offers')?.addEventListener('change', this.#offerChangeHandler);
     this.element.querySelector('.event__input--price').addEventListener('change', this.#priceChangeHandler);
+    this.element.querySelector('.event__reset-btn').addEventListener('click', this.#formDeleteHandler)
     this.#setDatepickers();
   };
 
@@ -304,6 +307,11 @@ export default class FormEditView extends AbstractStatefulView {
       }
     );
   };
+
+  #formDeleteHandler = (evt) => {
+    evt.preventDefault();
+    this.#onDeleteClick(FormEditView.parseStateToPoint(this._state));
+  }
 
   static parsePointToState = ({point}) => ({point});
   static parseStateToPoint = (state) => state.point;

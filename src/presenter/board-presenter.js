@@ -1,7 +1,7 @@
 import SortView from '../view/sort-view.js';
 import EditList from '../view/event-list-view.js';
 import PointPresenter from './point-presenter.js';
-import { render } from '../framework/render.js';
+import { render, remove } from '../framework/render.js';
 import EmptyListView from '../view/list-empty.js';
 import { SortType, FilterType, UpdateType, UserAction } from '../const.js';
 import { sortPointByTime, sortPointByPrice, sortPointByDay } from '../utils/sort.js';
@@ -34,11 +34,11 @@ export default class BoardPresenter {
     const filteredPoints = filter[this.#filterType](this.#pointsModel.get());
     switch (this.#currentSortType) {
       case SortType.TIME:
-        return filteredPoints.sort(sortPointByTime);
+        return [...this.#pointsModel.get()].sort(sortPointByTime);
       case SortType.PRICE:
-        return filteredPoints.sort(sortPointByPrice);
+        return [...this.#pointsModel.get()].sort(sortPointByPrice);
       case SortType.DAY:
-        return filteredPoints.sort(sortPointByDay);
+        return [...this.#pointsModel.get()].sort(sortPointByDay);
     }
     return filteredPoints;
   }
@@ -77,6 +77,7 @@ export default class BoardPresenter {
 
   #renderSort = () => {
     this.#sortComponent = new SortView({
+      currentSortType: this.#currentSortType,
       onSortTypeChange: this.#handleSortTypeChange
     });
     render(this.#sortComponent, this.#container);
@@ -127,6 +128,7 @@ export default class BoardPresenter {
       return;
     }
 
+    this.#currentSortType = sortType;
     this.#clearPoints();
     this.#renderPoints();
   };
