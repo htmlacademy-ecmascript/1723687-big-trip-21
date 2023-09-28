@@ -107,7 +107,7 @@ const createDestinationsTemplate = (hasDestinations, destinationById) => `
 `;
 
 
-const createFormEditTemplate = ({ state , pointDestinations, pointOffers }) => {
+const createFormEditTemplate = ({ state = POINT_BLANK , pointDestinations, pointOffers }) => {
   const { point } = state;
   const { type, dateFrom, dateTo, basePrice, destination } = point;
   const offersByType = pointOffers.find((item) => item.type.toLowerCase() === point.type.toLowerCase()).offers;
