@@ -20,7 +20,7 @@ export default class PointPresenter {
     this.#destinationsModel = destinationsModel;
     this.#handleDataChange = onDataChange;
     this.#handleModeChange = onModeChange;
-  };
+  }
 
   init(point) {
     this.#point = point;
@@ -42,7 +42,7 @@ export default class PointPresenter {
       pointOffers: this.#offersModel.get(),
       onSubmitClick: this.#handleFormSubmit,
       onResetClick: this.#handleFormClose,
-      onDeleteClick: this.#handleDeleteClick, 
+      onDeleteClick: this.#handleDeleteClick,
     });
 
     if (prevPointComponent === null || prevPointEditComponent === null) {
@@ -60,26 +60,26 @@ export default class PointPresenter {
 
     remove(prevPointComponent);
     remove(prevPointEditComponent);
-  };
+  }
 
   destroy() {
     remove(this.#pointComponent);
     remove(this.#pointEditComponent);
-  };
+  }
 
   resetView() {
     if(this.#mode !== Mode.DEFAULT) {
       this.#pointEditComponent.reset(this.#point);
       this.#replaceFormToPoint();
     }
-  };
+  }
 
   #replacePointToForm() {
     replace(this.#pointEditComponent, this.#pointComponent);
     document.addEventListener('keydown', this.#escKeyDownHandler);
     this.#handleModeChange();
     this.#mode = Mode.EDITING;
-  };
+  }
 
   #replaceFormToPoint() {
     replace(this.#pointComponent, this.#pointEditComponent);
@@ -95,7 +95,7 @@ export default class PointPresenter {
       point
     );
   };
- 
+
   #escKeyDownHandler = (evt) => {
     if (evt.key === 'Escape') {
       evt.preventDefault();
@@ -123,7 +123,7 @@ export default class PointPresenter {
       UserAction.UPDATE_POINT,
       UpdateType.PATCH,
       {
-        ...this.#point, 
+        ...this.#point,
         isFavorite: !this.#point.isFavorite
       }
     );

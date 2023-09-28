@@ -19,10 +19,9 @@ const destinationsModel = new DestinationsModel(mockService);
 const offersModel = new OffersModel(mockService);
 const pointsModel = new PointsModel(mockService);
 const filterModel = new FilterModel();
-
-const newPointButtonPresenter =  new NewPointButtonPresenter ({
+const newPointButtonPresenter = new NewPointButtonPresenter ({
   container: infoTripElement,
-})
+});
 
 const boardPresenter = new BoardPresenter({
   container: eventsListElement,
@@ -42,7 +41,7 @@ render(new InfoTrip(), infoTripElement, RenderPosition.AFTERBEGIN);
 
 newPointButtonPresenter.init({
   onButtonClick: boardPresenter.newPointButtonClickHandler
-})
+});
 
 boardPresenter.init();
 filterPresenter.init();

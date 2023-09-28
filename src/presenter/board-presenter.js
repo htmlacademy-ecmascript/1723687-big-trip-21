@@ -67,7 +67,7 @@ export default class BoardPresenter {
     this.#filterModel.set(UpdateType.MAJOR, FilterType.EVERYTHING);
     this.#newPointButtonPresenter.disableButton();
     this.#newPointPresenter.init();
-  }
+  };
 
   #handleModeChange = () => {
     this.#pointPresenters.forEach((presenter) => presenter.resetView());
@@ -115,7 +115,7 @@ export default class BoardPresenter {
     if (resetSortType) {
       this.#currentSortType = SortType.DAY;
     }
-  }
+  };
 
   #handleViewAction = (actionType, updateType, update) => {
     switch (actionType) {
@@ -136,7 +136,7 @@ export default class BoardPresenter {
       case UpdateType.PATCH:
         this.#pointPresenters?.get(data.id)?.init(data);
         break;
-      case UpdateType.MINOR: 
+      case UpdateType.MINOR:
         this.#clearBoard();
         this.#renderBoard();
         break;
@@ -145,7 +145,7 @@ export default class BoardPresenter {
         this.#renderBoard();
         break;
     }
-  }
+  };
 
   #handleSortTypeChange = (sortType) => {
     if (this.#currentSortType === sortType) {
@@ -181,5 +181,5 @@ export default class BoardPresenter {
       this.#clearBoard();
       this.#renderBoard();
     }
-  }
+  };
 }
