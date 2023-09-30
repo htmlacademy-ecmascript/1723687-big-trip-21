@@ -63,14 +63,14 @@ const createPriceTemplate = (basePrice) => `
     </div>
 `;
 
-const createOffersTemplate = (hasOffers, offersByType, point) => (
+const createOffersTemplate = (hasOffers, offersByType, offers) => (
   hasOffers ? `
     <section class="event__section  event__section--offers">
     <h3 class="event__section-title  event__section-title--offers">Offers</h3>
   
     <div class="event__available-offers">
     ${offersByType.map((offer) => {
-    const checked = point.offers.includes(offer.id) ? 'checked' : '';
+    const checked = offers.includes(offer.id) ? 'checked' : '';
     return `
       <div class="event__offer-selector">
         <input class="event__offer-checkbox  visually-hidden" id="event-offer-${offer.id}" type="checkbox" name="event-offer-${offer.id}" data-offer-id=${offer.id} ${checked}>
@@ -109,7 +109,7 @@ const createDestinationsTemplate = (hasDestinations, destinationById) => `
 
 const createFormEditTemplate = ({ state = POINT_BLANK , pointDestinations, pointOffers }) => {
   const { point } = state;
-  const { type, dateFrom, dateTo, basePrice, destination } = point;
+  const { type, dateFrom, dateTo, basePrice, destination, offers } = point;
   const offersByType = pointOffers.find((item) => item.type.toLowerCase() === point.type.toLowerCase()).offers;
   const destinationById = pointDestinations.find((item) => item.id === destination);
   const { name , pictures , description} = destinationById;
@@ -139,8 +139,8 @@ const createFormEditTemplate = ({ state = POINT_BLANK , pointDestinations, point
                 </button>
             </header>
             <section class="event__details">
-              ${createOffersTemplate(hasOffers,offersByType, point)}
-              ${createDestinationsTemplate(hasDestinations, destinationById, name)}
+              ${createOffersTemplate(hasOffers,offersByType, offers)}
+              ${createDestinationsTemplate(hasDestinations, destinationById)}
             </section>
             </form>
         </li>
@@ -210,7 +210,7 @@ export default class FormEditView extends AbstractStatefulView {
 
   #formSubmitHandler = (evt) => {
     evt.preventDefault();
-    this.#onSubmitClick((this._state));
+    this.#onSubmitClick(FormEditView.parseStateToPoint(this._state));
   };
 
   #typeChangeHandler = (evt) => {
