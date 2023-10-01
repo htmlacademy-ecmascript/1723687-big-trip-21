@@ -27,7 +27,7 @@ export default class NewPointPresenter {
     this.#pointNewComponent = new FormEditView({
       pointDestinations: this.#destinationsModel.get(),
       pointOffers: this.#offersModel.get(),
-      onEditClick: this.#handleEditClick,
+      onResetClick: this.#handleResetClick,
       onSubmitClick: this.#handleFormSubmit,
       type: UpdateType.ADD_POINT,
     });
@@ -52,7 +52,7 @@ export default class NewPointPresenter {
     this.#handleDataChange(
       UserAction.ADD_POINT,
       UpdateType.MINOR,
-      { id: crypto.randomUUID(), ...point },
+      point
     );
     this.destroy({ isCanceled: false });
   };
@@ -64,7 +64,7 @@ export default class NewPointPresenter {
     }
   };
 
-  #handleEditClick = () => {
+  #handleResetClick = () => {
     this.destroy();
   };
 }
