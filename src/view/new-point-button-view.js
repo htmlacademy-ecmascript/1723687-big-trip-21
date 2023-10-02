@@ -22,7 +22,7 @@ export default class NewPointButtonView extends AbstractView {
 
   setDisabled(isDisabled) {
     this.element.disabled = isDisabled;
-  };
+  }
 
   #buttonClickHandler = (evt) => {
     evt.preventDefault();

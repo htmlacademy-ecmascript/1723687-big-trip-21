@@ -5,7 +5,7 @@ const NoPointsTextType = {
   FUTURE: 'There are no future events now',
   PRESENT: 'There are no present events now',
   PAST: 'There are no past events now',
-}
+};
 
 function createEmptyListTemplate({filterText}) {
   return `
@@ -17,7 +17,7 @@ function createEmptyListTemplate({filterText}) {
 
 export default class EmptyListView extends AbstractView {
   #filterType = null;
-  
+
   constructor({filterType}) {
     super();
     this.#filterType = filterType;

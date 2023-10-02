@@ -29,7 +29,7 @@ export default class FilterView extends AbstractView {
     super();
     this._items = items;
     this._handleFilterTypeChange = onFilterTypeChange;
-    this.element.addEventListener('change', this.#filterTypeChangeHandler)
+    this.element.addEventListener('change', this.#filterTypeChangeHandler);
 
   }
 
@@ -40,6 +40,6 @@ export default class FilterView extends AbstractView {
   #filterTypeChangeHandler = (evt) => {
     evt.preventDefault();
     this._handleFilterTypeChange(evt.target.dataset.item);
-  }
+  };
 }
 

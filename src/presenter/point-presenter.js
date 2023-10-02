@@ -113,7 +113,7 @@ export default class PointPresenter {
     const isMinor = isBigDifference(updatedPoint, this.#point);
 
     this.#handleDataChange(
-      UserAction.UPDATE_POINT, 
+      UserAction.UPDATE_POINT,
       isMinor ? UpdateType.MINOR : UpdateType.PATCH,
       updatedPoint
     );

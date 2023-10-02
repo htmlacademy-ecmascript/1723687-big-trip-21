@@ -37,7 +37,7 @@ export default class BoardPresenter {
       offersModel: this.#offersModel,
       onDataChange: this.#handleViewAction,
       onDestroy: this.#newPointDestroyHandler,
-    })
+    });
     this.#pointsModel.addObserver(this.#handleModelEvent);
     this.#filterModel.addObserver(this.#handleModelEvent);
   }
@@ -173,10 +173,6 @@ export default class BoardPresenter {
   #renderPointContainer = () => {
     render(this.#editListComponent, this.#container);
   };
-
-  // #renderEmpty = () => {
-  //   render(new EmptyListView(), this.#container);
-  // };
 
   #renderNoPoints() {
     this.#noPointsComponent = new EmptyListView({

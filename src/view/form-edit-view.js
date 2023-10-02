@@ -139,12 +139,10 @@ const createFormEditTemplate = ({ state, pointDestinations, pointOffers, modeAdd
               
                 <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
                 <button class="event__reset-btn" type="reset">${isCreating ? 'Cancel' : 'Delete'}</button>
-                ${(isCreating) ? 
-                  '' : 
-                  `<button class="event__rollup-btn" type="button">
+                ${(isCreating) ? '' : `
+                  <button class="event__rollup-btn" type="button">
                     <span class="visually-hidden">Open event</span>
-                  </button>`
-                }
+                  </button>`}
             </header>
             <section class="event__details">
               ${createOffersTemplate(hasOffers,offersByType, offers)}
@@ -206,7 +204,7 @@ export default class FormEditView extends AbstractStatefulView {
   _restoreHandlers = () => {
     if(this.#modeAddForm === EditType.EDITING) {
       this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#resetButtonClickHandler);
-      this.element.querySelector('.event__reset-btn').addEventListener('click', this.#formDeleteHandler)
+      this.element.querySelector('.event__reset-btn').addEventListener('click', this.#formDeleteHandler);
     }
     this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
     this.element.querySelector('.event__type-group').addEventListener('change', this.#typeChangeHandler);
@@ -214,7 +212,7 @@ export default class FormEditView extends AbstractStatefulView {
     this.element.querySelector('.event__available-offers')?.addEventListener('change', this.#offerChangeHandler);
     this.element.querySelector('.event__input--price').addEventListener('change', this.#priceChangeHandler);
     if(this.#modeAddForm === EditType.CREATING) {
-      this.element.querySelector('.event__reset-btn').addEventListener('click', this.#formDeleteHandler)
+      this.element.querySelector('.event__reset-btn').addEventListener('click', this.#formDeleteHandler);
     }
     this.#setDatepickers();
   };
@@ -301,7 +299,7 @@ export default class FormEditView extends AbstractStatefulView {
         firstDayOfWeek: 1,
       },
       'time_24hr': true,
-      allowInput: true 
+      allowInput: true
     };
 
     this.#datepickerFrom = flatpickr(
@@ -328,7 +326,7 @@ export default class FormEditView extends AbstractStatefulView {
   #formDeleteHandler = (evt) => {
     evt.preventDefault();
     this.#onDeleteClick(FormEditView.parseStateToPoint(this._state));
-  }
+  };
 
   static parsePointToState = ({point}) => ({point});
   static parseStateToPoint = (state) => state.point;
