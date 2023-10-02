@@ -108,7 +108,7 @@ const createDestinationsTemplate = (hasDestinations, destinationById) => `
 `;
 
 
-const createFormEditTemplate = ({ state = POINT_BLANK , pointDestinations, pointOffers, modeAddForm }) => {
+const createFormEditTemplate = ({ state, pointDestinations, pointOffers, modeAddForm }) => {
   const { point } = state;
   const { type, dateFrom, dateTo, basePrice, destination, offers } = point;
   const isCreating = modeAddForm === EditType.CREATING;
@@ -232,7 +232,7 @@ export default class FormEditView extends AbstractStatefulView {
       point: {
         ...this._state.point,
         type: evt.target.value,
-        offer: []
+        offers: []
       }
     });
   };
