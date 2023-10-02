@@ -3,6 +3,7 @@ import { formatStringToDayTime } from '../utils/day.js';
 import { TYPES, EditType } from '../const.js';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import { toCapitalize } from '../utils/common.js';
 
 const POINT_BLANK = {
   basePrice: 0,
@@ -42,10 +43,10 @@ const createTypeWrapperTemplate = (type) => `
 const createDateTemplate = (dateFrom, dateTo, isDateCreating) => `
     <div class="event__field-group  event__field-group--time">
       <label class="visually-hidden" for="event-start-time-1">From</label>
-      <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${isDateCreating ? formatStringToDayTime(dateFrom) : ''}" required>
+      <input class="event__input  event__input--time" required id="event-start-time-1" type="text" name="event-start-time" value="${isDateCreating ? formatStringToDayTime(dateFrom) : ''}">
       &mdash;
       <label class="visually-hidden" for="event-end-time-1">To</label>
-      <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time"  value="${isDateCreating ? formatStringToDayTime(dateTo) : ''}" required>
+      <input class="event__input  event__input--time" required id="event-end-time-1" type="text" name="event-end-time"  value="${isDateCreating ? formatStringToDayTime(dateTo) : ''}">
     </div>
 `;
 
@@ -247,7 +248,7 @@ export default class FormEditView extends AbstractStatefulView {
   };
 
   #destinationChangeHandler = (evt) => {
-    const selectedDestination = this.#pointDestinations.find((pointDestination) => pointDestination.name === evt.target.value);
+    const selectedDestination = this.#pointDestinations.find((pointDestination) => pointDestination.name === toCapitalize(evt.target.value));
     const selectedDestinationId = (selectedDestination) ? selectedDestination.id : this._state.point.destination;
 
     this.updateElement({
