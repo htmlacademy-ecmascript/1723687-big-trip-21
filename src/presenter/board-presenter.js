@@ -127,23 +127,23 @@ export default class BoardPresenter {
         this.#pointPresenters.get(update.id).setSaving();
         try {
           await this.#pointsModel.update(updateType, update);
-        } catch {
-          this.#pointPresenters.get(update.id) .setAborting();
+        } catch(err) {
+          this.#pointPresenters.get(update.id).setAborting();
         }
         break;
       case UserAction.ADD_POINT:
         this.#newPointPresenter.setSaving();
         try {
           await this.#pointsModel.add(updateType, update);
-        } catch {
-          this.#pointPresenters.get(update.id).setAborting();
+        } catch(err) {
+          this.#newPointPresenter.setAborting();
         }
         break;
       case UserAction.DELETE_POINT:
         this.#pointPresenters.get(update.id).setDeleting();
         try {
           await this.#pointsModel.delete(updateType, update);
-        } catch {
+        } catch(err) {
           this.#pointPresenters.get(update.id).setAborting();
         }
         break;
