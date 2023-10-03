@@ -17,11 +17,13 @@ const pageMain = document.querySelector('.page-main');
 const infoTripElement = document.querySelector('.trip-main');
 const eventsListElement = pageMain.querySelector('.trip-events');
 const filterModel = new FilterModel;
+
 const pointsApiService = new PointsApiService(END_POINT, AUTHORIZATION);
+
 const destinationsModel = new DestinationsModel(pointsApiService);
 const offersModel = new OffersModel(pointsApiService);
 const pointsModel = new PointsModel({
-  pointsApiService,
+  service: pointsApiService,
   destinationsModel,
   offersModel
 });
