@@ -20,7 +20,11 @@ const filterModel = new FilterModel;
 const pointsApiService = new PointsApiService(END_POINT, AUTHORIZATION);
 const destinationsModel = new DestinationsModel(pointsApiService);
 const offersModel = new OffersModel(pointsApiService);
-const pointsModel = new PointsModel(pointsApiService);
+const pointsModel = new PointsModel({
+  pointsApiService,
+  destinationsModel,
+  offersModel
+});
 
 const newPointButtonPresenter = new NewPointButtonPresenter({
   container: infoTripElement,
@@ -45,5 +49,6 @@ render(new InfoTrip(), infoTripElement, RenderPosition.AFTERBEGIN);
 
 newPointButtonPresenter.init({ onButtonClick: boardPresenter.newPointButtonClickHandler });
 
+pointsModel.init();
 boardPresenter.init();
 filterPresenter.init();
