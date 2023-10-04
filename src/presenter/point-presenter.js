@@ -117,6 +117,7 @@ export default class PointPresenter {
       isMinor ? UpdateType.MINOR : UpdateType.PATCH,
       updatedPoint
     );
+    this.#replaceFormToPoint();
   };
 
   #handleFormClose = () => {
