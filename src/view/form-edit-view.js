@@ -1,6 +1,6 @@
 import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
 import { formatStringToDayTime } from '../utils/day.js';
-import { TYPES, EditType } from '../const.js';
+import { TYPES, EditType, Mode } from '../const.js';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { toCapitalize } from '../utils/common.js';
@@ -44,10 +44,10 @@ const createTypeWrapperTemplate = (type, isDisabled) => `
 const createDateTemplate = (dateFrom, dateTo, isDateCreating, isDisabled) => (`
     <div class="event__field-group  event__field-group--time">
       <label class="visually-hidden" for="event-start-time-1">From</label>
-      <input class="event__input  event__input--time" required id="event-start-time-1" type="text" name="event-start-time" value="${isDateCreating ? formatStringToDayTime(dateFrom) : ''}" ${isDisabled ? 'disabled' : ''}>
+      <input class="event__input  event__input--time" required id="event-start-time-1" type="text" name="event-start-time" ${isDisabled ? 'disabled' : ''} value="${isDateCreating ? formatStringToDayTime(dateFrom) : ''}">
       &mdash;
       <label class="visually-hidden" for="event-end-time-1">To</label>
-      <input class="event__input  event__input--time" required id="event-end-time-1" type="text" name="event-end-time"  value="${isDateCreating ? formatStringToDayTime(dateTo) : ''}" ${isDisabled ? 'disabled' : ''}>
+      <input class="event__input  event__input--time" required id="event-end-time-1" type="text" name="event-end-time"  ${isDisabled ? 'disabled' : ''} value="${isDateCreating ? formatStringToDayTime(dateTo) : ''}">
     </div>`);
 
 const createCitiesTemplate = (pointDestinations) => {
@@ -178,7 +178,7 @@ export default class FormEditView extends AbstractStatefulView {
   #onDeleteClick = null;
   #modeAddForm = EditType.EDITING;
 
-  constructor({ point = POINT_BLANK, pointDestinations, pointOffers, onSubmitClick , onResetClick, onDeleteClick, modeAddForm }) {
+  constructor({ point = POINT_BLANK, pointDestinations, pointOffers, onSubmitClick , onResetClick, onDeleteClick, modeAddForm = Mode.EDITING }) {
     super();
     this._state = point;
     this._setState(FormEditView.parsePointToState({point}));
