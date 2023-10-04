@@ -9,7 +9,7 @@ import { filter } from '../utils/filter.js';
 import NewPointPresenter from './new-point-presenter.js';
 import LoadingView from '../view/loading-view.js';
 import UiBlocker from '../framework/ui-blocker/ui-blocker.js';
-import FailedLoadingView from '../view/failed-loading-view.js'
+import FailedLoadingView from '../view/failed-loading-view.js';
 
 export default class BoardPresenter {
   #sortComponent = null;

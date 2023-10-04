@@ -41,8 +41,7 @@ const createTypeWrapperTemplate = (type, isDisabled) => `
   </div>
 `;
 
-const createDateTemplate = (dateFrom, dateTo, isDateCreating, isDisabled) => {
-  return (`
+const createDateTemplate = (dateFrom, dateTo, isDateCreating, isDisabled) => (`
     <div class="event__field-group  event__field-group--time">
       <label class="visually-hidden" for="event-start-time-1">From</label>
       <input class="event__input  event__input--time" required id="event-start-time-1" type="text" name="event-start-time" value="${isDateCreating ? formatStringToDayTime(dateFrom) : ''}" ${isDisabled ? 'disabled' : ''}>
@@ -50,15 +49,13 @@ const createDateTemplate = (dateFrom, dateTo, isDateCreating, isDisabled) => {
       <label class="visually-hidden" for="event-end-time-1">To</label>
       <input class="event__input  event__input--time" required id="event-end-time-1" type="text" name="event-end-time"  value="${isDateCreating ? formatStringToDayTime(dateTo) : ''}" ${isDisabled ? 'disabled' : ''}>
     </div>`);
-}
 
 const createCitiesTemplate = (pointDestinations) => {
   const cityDestinations = Array.from(new Set(pointDestinations.map((item) => item.name)));
   return (`${cityDestinations.map((city) => `<option value="${city}">${city}</option>`).join('')}`);
 };
 
-const createPriceTemplate = (basePrice, isDisabled) => {
-  return (`
+const createPriceTemplate = (basePrice, isDisabled) => (`
   <div class="event__field-group  event__field-group--price">
     <label class="event__label" for="event-price-1">
         <span class="visually-hidden">Price</span>
@@ -66,10 +63,8 @@ const createPriceTemplate = (basePrice, isDisabled) => {
     </label>
     <input class="event__input  event__input--price" id="event-price-1" type="number" name="event-price" value="${he.encode(String(basePrice))}" min="1" max="100000" required ${isDisabled ? 'disabled' : ''}>
   </div>`);
-};
 
-const createOffersTemplate = (hasOffers, offersByType, offers) => {
-  return (`
+const createOffersTemplate = (hasOffers, offersByType, offers) => (`
   ${hasOffers ? `
   <section class="event__section  event__section--offers">
     <h3 class="event__section-title  event__section-title--offers">Offers</h3>
@@ -90,22 +85,18 @@ const createOffersTemplate = (hasOffers, offersByType, offers) => {
     </div>
   </section>` : ''}
   `);
-}
 
-const createPicturesTemplate = (pictures) => {
-  return (
-    `${(pictures) ?
-      `<div class="event__photos-tape">
+const createPicturesTemplate = (pictures) => (
+  `${(pictures) ?
+    `<div class="event__photos-tape">
     ${(pictures).map((picture) =>
-      `<img class="event__photo" src="${picture.src}" alt="${picture.description}">`
-    ).join('')}
+    `<img class="event__photo" src="${picture.src}" alt="${picture.description}">`
+  ).join('')}
       </div>`
-      : ''}`
-  );
-}
+    : ''}`
+);
 
-const createDestinationsTemplate = (hasDestinations, destinationById, hasPictures) => {
-  return (`
+const createDestinationsTemplate = (hasDestinations, destinationById, hasPictures) => (`
     ${hasDestinations ? `
     <section class="event__section  event__section--destination">
       <h3 class="event__section-title  event__section-title--destination">Destination</h3>
@@ -118,8 +109,7 @@ const createDestinationsTemplate = (hasDestinations, destinationById, hasPicture
     </section>
     ` : ''}
   `
-  );
-}
+);
 
 const createButtonTemplate = (isCreating, isDeleting, isDisabled) => {
   if (isCreating) {
