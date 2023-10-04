@@ -182,20 +182,20 @@ export default class FormEditView extends AbstractStatefulView {
   #pointDestinations = null;
   #pointOffers = null;
   #onResetClick = null;
-  #onSubmitClick = null;
+  #handleFormSubmit = null;
   #datepickerFrom = null;
   #datepickerTo = null;
   #onDeleteClick = null;
   #modeAddForm = EditType.EDITING;
 
-  constructor({ point = POINT_BLANK, pointDestinations, pointOffers, onSubmitClick , onResetClick, onDeleteClick, modeAddForm }) {
+  constructor({ point = POINT_BLANK, pointDestinations, pointOffers, handleFormSubmit , onResetClick, onDeleteClick, modeAddForm }) {
     super();
     this._state = point;
     this._setState(FormEditView.parsePointToState({point}));
     this.#pointDestinations = pointDestinations;
     this.#pointOffers = pointOffers;
     this.#onResetClick = onResetClick;
-    this.#onSubmitClick = onSubmitClick;
+    this.#handleFormSubmit = handleFormSubmit;
     this.#onDeleteClick = onDeleteClick;
     this.#modeAddForm = modeAddForm;
     this._restoreHandlers();
@@ -249,7 +249,7 @@ export default class FormEditView extends AbstractStatefulView {
 
   #formSubmitHandler = (evt) => {
     evt.preventDefault();
-    this.#onSubmitClick(FormEditView.parseStateToPoint(this._state));
+    this.#handleFormSubmit(FormEditView.parseStateToPoint(this._state));
   };
 
   #typeChangeHandler = (evt) => {
