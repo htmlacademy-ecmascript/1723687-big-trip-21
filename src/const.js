@@ -10,16 +10,16 @@ const TYPES = [
   'Restaurant',
 ];
 
+const Mode = {
+  DEFAULT: 'default',
+  EDITING: 'editing',
+};
+
 const FilterType = {
   EVERYTHING: 'Everything',
   FUTURE:'Future',
   PRESENT:'Present',
   PAST: 'Past',
-};
-
-const Mode = {
-  DEFAULT: 'default',
-  EDITING: 'editing',
 };
 
 const SortType = {
