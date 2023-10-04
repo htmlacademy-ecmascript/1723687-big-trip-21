@@ -8,7 +8,7 @@ import { sortPointByTime, sortPointByPrice, sortPointByDay } from '../utils/sort
 import { filter } from '../utils/filter.js';
 import NewPointPresenter from './new-point-presenter.js';
 import LoadingView from '../view/loading-view.js';
-import UiBlocker from '../framework/ui-blocker/ui-blocker.js'
+import UiBlocker from '../framework/ui-blocker/ui-blocker.js';
 
 export default class BoardPresenter {
   #sortComponent = null;

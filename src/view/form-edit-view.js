@@ -261,7 +261,6 @@ export default class FormEditView extends AbstractStatefulView {
     if (evt.target.value) {
       const selectedDestination = this.#pointDestinations.find((pointDestination) => pointDestination.name === toCapitalize(evt.target.value));
       const selectedDestinationId = (selectedDestination) ? selectedDestination.id : this._state.point.destination;
-  
       this.updateElement({
         point: {
           ...this._state.point,
