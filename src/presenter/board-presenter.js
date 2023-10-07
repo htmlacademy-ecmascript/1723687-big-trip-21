@@ -1,5 +1,5 @@
 import SortView from '../view/sort-view.js';
-import EventsList from '../view/event-list-view.js';
+import EventsListView from '../view/event-list-view.js';
 import PointPresenter from './point-presenter.js';
 import { render, remove } from '../framework/render.js';
 import ListEmptyView from '../view/list-empty-view.js';
@@ -14,7 +14,7 @@ import FailedLoadingView from '../view/failed-loading-view.js';
 export default class BoardPresenter {
   #sortComponent = null;
   #currentSortType = SortType.DAY;
-  #eventsListComponent = new EventsList();
+  #eventsListComponent = new EventsListView();
   #container = null;
   #pointsModel = null;
   #destinationsModel = null;
