@@ -1,5 +1,5 @@
 import SortView from '../view/sort-view.js';
-import EventsListView from '../view/event-list-view.js';
+import EventsListView from '../view/events-list-view.js';
 import PointPresenter from './point-presenter.js';
 import { render, remove } from '../framework/render.js';
 import ListEmptyView from '../view/list-empty-view.js';
